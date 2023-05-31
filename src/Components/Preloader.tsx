@@ -1,14 +1,16 @@
 
+import Giphy from "../Gif/giphy.gif"
 
 const Preloader = () => {
 
   return (
 
-    <div className='pre-loader-body'>
+    <div className='pre-loader-body pre-loader-animation'>
 
       <div className='todo-gif'>
-          <iframe 
-          src='https://giphy.com/embed/8HcT5UwUTT0XtlIvmc'
+          {/* <iframe 
+          // src='https://giphy.com/embed/8HcT5UwUTT0XtlIvmc'
+          src="../Gif/giphy1"
           width="100%" 
           height="100%" 
           frameBorder="0" 
@@ -16,7 +18,8 @@ const Preloader = () => {
           className='gif-iframe'
           >
 
-          </iframe>
+          </iframe> */}
+          <img src={Giphy} alt="gif" className="gif-img"/>
         </div>
 
         <div className='todo-title-div'>
