@@ -1,5 +1,5 @@
 .pre-loader-body{
-  background-color: #DE937A; 
+  /* background-color: #DE937A;  */
   height:100vh;
   display: flex;
   flex-direction: column;
@@ -24,8 +24,8 @@
   width: 200px;
   height: 200px;
   animation-name: gifscaling;
-  animation-duration: 1s;
-  animation-timing-function: ease-in-out;
+  animation-duration: 3s;
+  /* animation-timing-function: ease-in; */
 }
 
 .todo-title{
@@ -35,6 +35,57 @@
   font-weight: bold;
   font-style: italic;
   animation-name: gifscaling;
-  animation-duration: 1s;
-  animation-timing-function: ease-in-out;
+  animation-duration: 3s;
+  /* animation-timing-function: ease-in; */
+}
+
+/* ------------------------------------------------------------ */
+
+.todo-mainpage{
+   /* background-color: #BE89FF; */
+   /* background-color: black; */
+  height: 100vh;
+  width: 100%;
+}
+
+.header-div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.todo-quote{
+  font-size: 70px;
+  font-style: italic;
+  padding: 30px;
+  color: black;
+  position: relative;
+  animation-name: qoute;
+  animation-duration: 2s;
+}
+
+@keyframes qoute{
+  0%{
+    top:100px
+  }
+  50%{
+    top:0px
+  }
+  75%{
+    top:10px
+  }
+  100%{
+    top:0px
+  }
+}
+
+.todo-gif-div{
+
+  display: flex;
+  justify-content: flex-start;
+}
+
+.todo-gif-img{
+  width: 350px;
+  height:350px;
 }

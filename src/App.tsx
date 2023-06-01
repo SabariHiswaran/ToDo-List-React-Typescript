@@ -1,11 +1,22 @@
-
-import './App.css';
-import Preloader from './Components/Preloader';
+import { useEffect, useState } from "react";
+import "./App.css";
+import Preloader from "./Components/Preloader";
+import Todopage from "./Components/Todopage";
 
 function App() {
-  return (
-    <div className="App">
-        <Preloader/>
+  const [pageLoad, setPageLoad] = useState<boolean>(false);
+
+  useEffect(() => {
+    setTimeout(() => setPageLoad(true), 2000);
+  }, []);
+
+  return pageLoad ? (
+    <div>
+        <Todopage/>
+    </div>
+  ) : (
+    <div>
+      <Preloader />
     </div>
   );
 }

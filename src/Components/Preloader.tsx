@@ -1,5 +1,5 @@
 
-import Giphy from "../Gif/giphy.gif"
+import Giphy from "../Gif/giphy (1).gif"
 
 const Preloader = () => {
 
@@ -8,17 +8,7 @@ const Preloader = () => {
     <div className='pre-loader-body pre-loader-animation'>
 
       <div className='todo-gif'>
-          {/* <iframe 
-          // src='https://giphy.com/embed/8HcT5UwUTT0XtlIvmc'
-          src="../Gif/giphy1"
-          width="100%" 
-          height="100%" 
-          frameBorder="0" 
-          allowFullScreen
-          className='gif-iframe'
-          >
-
-          </iframe> */}
+       
           <img src={Giphy} alt="gif" className="gif-img"/>
         </div>
 
