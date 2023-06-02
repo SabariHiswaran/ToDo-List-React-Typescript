@@ -46,9 +46,10 @@
 /* ------------------------------------------------------------ */
 
 .todo-mainpage{
-   /* background-color: #BE89FF; */
-  height: 100vh;
-  width: 100%;
+   background-color: #BE89FF;
+   /* background-color: #E4EEF8; */
+  height: 100%;
+    width: 100%;
 }
 
 .header-div{
@@ -104,7 +105,8 @@
   width:500px;
   height: 50px;
   border: 3px solid black;
-  /* background-color: #BE89FF; */
+  background-color: #BE89FF;
+  /* background-color: #E4EEF8; */
   outline: none;
   border-radius: 5px;
   font-size: 20px;
@@ -123,4 +125,118 @@
 
 .todolist-addbutton:hover{
   cursor: pointer;
+}
+
+.greyBg{
+  background-color: gray;
+  color: lightgray;
+}
+
+.greyBg:hover{
+ cursor: default;
+}
+
+/* ----------------------------------------------------------------- */
+
+.notask-div{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px; 
+}
+
+.notask-title{
+    font-size: 20px;
+    font-style: italic;
+  }
+
+.allTodoList-div{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px; 
+}
+
+.list-div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 700px;
+  margin-top: 10px;
+  /* background-color: #082a4b; */
+  background-color: #002b53;
+  border-radius: 7px;
+}
+
+.grayBg{
+  background-color: gray;
+}
+
+.listname-div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: auto;
+  padding-left: 20px;
+}
+
+.checkbox-div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 5px;
+}
+
+.list-title-div{
+  margin-left:10px;
+}
+
+.list-title{
+  font-size: 20px;
+  /* font-weight: bold; */
+  color: white;
+}
+
+.strikestyle {
+  text-decoration: line-through;
+  font-style: italic;
+}
+
+.para-div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.done{
+  font-size: 20px;
+  margin-right: 10px;
+  color: white;
+}
+
+.done:hover{
+  cursor:pointer;
+}
+
+.edit{
+font-size: 20px;
+  margin-right: 10px;
+  color: white;
+}
+
+.edit:hover{
+  cursor:pointer;
+}
+
+.delete{
+  font-size: 20px;
+  margin-right: 10px;
+  color: white;
+}
+
+.delete:hover{
+  cursor:pointer;
 }
