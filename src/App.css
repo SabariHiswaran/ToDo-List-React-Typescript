@@ -46,7 +46,7 @@
 /* ------------------------------------------------------------ */
 
 .todo-mainpage{
-   background-color: #BE89FF;
+   /* background-color: #BE89FF; */
   height: 100vh;
   width: 100%;
 }
@@ -104,7 +104,7 @@
   width:500px;
   height: 50px;
   border: 3px solid black;
-  background-color: #BE89FF;
+  /* background-color: #BE89FF; */
   outline: none;
   border-radius: 5px;
   font-size: 20px;
