@@ -17,7 +17,7 @@ const Preloader = () => {
           
             <span className="title-text1"> ToDo</span>
             <span className="title-text2">-List</span> 
-            <span className="title-text3"> App </span>
+            <span className="title-text3"> Web App </span>
          
            </p>
         </div>
