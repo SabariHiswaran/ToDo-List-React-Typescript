@@ -11,6 +11,10 @@ const UssersList = () => {
   const [userInput, setUserInput] = useState<string>("");
 
   const [allList, setAllList] = useState<Array<allListType>>([]);
+  
+  const [isChecked,setIsChecked] = useState<boolean>(false)
+
+  const [allCheckedList, setAllCheckedList] = useState<number[]>([])
 
   const isDisabled: boolean = userInput.length > 0 ? false : true;
 
@@ -33,6 +37,25 @@ const UssersList = () => {
     ]);
     setUserInput("");
   };
+
+  const handleCheckboxChange = (checkedboxId:number , e : React.SyntheticEvent) => {
+      
+      const {checked} = e.target as HTMLInputElement
+
+      if(checked){
+        setIsChecked(true)
+        setAllCheckedList(prevVal => [...prevVal ,checkedboxId ])
+      }
+      else {
+        setIsChecked(false)
+        setAllCheckedList(prevVal => prevVal.filter(val => val !== checkedboxId))
+      }
+
+  }
+
+  const handleRemoveAll = () => {
+      setAllList(prevVal => prevVal.filter(val => allCheckedList.includes(val.id) ))
+  }
 
   const handleTick = (selectedId: number) => {
     setAllList((prevVal) => {
@@ -91,14 +114,24 @@ const UssersList = () => {
 
       {allList.length > 0 ? (
         <div className="allTodoList-div">
+        
           {allList.map((list) => (
             <List 
             todolist={list} 
             handleTick={handleTick} 
             handleDelete={handleDelete} 
             handleEditedList={handleEditedList}
+            handleCheckboxChange={handleCheckboxChange}
+            isChecked = {isChecked}
             />
           ))}
+
+        <button 
+        className="removeAll-button"
+        onClick={handleRemoveAll}
+        >
+          Remove All
+          </button>
         </div>
       ) : (
         <div className="notask-div">

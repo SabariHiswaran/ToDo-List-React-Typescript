@@ -276,3 +276,21 @@ font-size: 20px;
 .delete:hover{
   cursor:pointer;
 }
+
+.removeAll-button{
+  margin-top: 30px;
+  width: 100px;
+  height:30px;
+  background-color: black;
+  color: white;
+  outline: none;
+  border:none;
+  font-size: 15px;
+  border-radius: 5px;
+  box-shadow: 5px 5px #002b53
+
+  }
+
+.removeAll-button:hover{
+  cursor: pointer;
+}

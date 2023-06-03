@@ -11,10 +11,12 @@ interface list {
   todolist: { id: number; todo: string; isDone: boolean };
   handleTick: (selectedId: number) => void;
   handleDelete: (deleteId: number) => void;
-  handleEditedList:(editedId:number , e:React.SyntheticEvent) => void
+  handleEditedList:(editedId:number , e:React.SyntheticEvent) => void;
+  handleCheckboxChange : (checkboxId:number , e:React.SyntheticEvent) => void;
+  isChecked : boolean;
 }
 
-const List = ({ todolist, handleTick, handleDelete,handleEditedList }: list) => {
+const List = ({ todolist, handleTick, handleDelete,handleEditedList,handleCheckboxChange ,isChecked }: list) => {
   const listDivStyle = todolist.isDone ? "grayBg" : "";
 
   const textStyle = todolist.isDone ? "strikestyle" : "";
@@ -23,7 +25,7 @@ const List = ({ todolist, handleTick, handleDelete,handleEditedList }: list) => 
 
   const isCheckboxDisabled = todolist.isDone ? true : false;
 
-  const [isEdit, setIsEdit] = useState<Boolean>(false);
+  const [isEdit, setIsEdit] = useState<boolean>(false);
 
   const inputref = useRef<HTMLInputElement>(null);
 
@@ -45,9 +47,19 @@ const List = ({ todolist, handleTick, handleDelete,handleEditedList }: list) => 
 
   return (
     <div className={`list-div ${listDivStyle}`}>
+
       <div className="listname-div">
+
         <div className="checkbox-div">
-          <input type="checkbox" disabled={isCheckboxDisabled} />
+
+          <input 
+          type="checkbox" 
+          disabled={isCheckboxDisabled} 
+          checked={isChecked}
+          onChange={(e) => handleCheckboxChange(todolist.id,e)}
+          name={`list${todolist.id}`}
+          />
+
         </div>
 
         <div className="list-title-div">
