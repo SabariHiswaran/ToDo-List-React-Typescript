@@ -47,6 +47,25 @@ const UssersList = () => {
     });
   };
 
+  const handleEditedList = (editedId:number, e:React.SyntheticEvent) => {
+    setAllList((prevVal) => {
+      const newArr = prevVal.map((val) => {
+        if (val.id === editedId) {
+          return { ...val, todo: (e.target as HTMLInputElement).value };
+        } else {
+          return val;
+        }
+      });
+      return newArr;
+    });
+  }
+
+  const handleDelete = (deleteId: number) => {
+
+    setAllList((prevVal) => prevVal.filter( (val) => val.id !== deleteId ))
+
+  };
+
   return (
     <>
       <div className="users-input">
@@ -73,7 +92,12 @@ const UssersList = () => {
       {allList.length > 0 ? (
         <div className="allTodoList-div">
           {allList.map((list) => (
-            <List todolist={list} handleTick={handleTick}/>
+            <List 
+            todolist={list} 
+            handleTick={handleTick} 
+            handleDelete={handleDelete} 
+            handleEditedList={handleEditedList}
+            />
           ))}
         </div>
       ) : (

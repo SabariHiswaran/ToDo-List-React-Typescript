@@ -11,7 +11,7 @@ const Todopage = () => {
     <div className='app-title'>
        <h1> To Do List </h1>
     </div>
-
+    <UssersList/>
       <div className="header-div">
       <div className="todo-gif-div">
           <img src={todogiphy} alt="gif" className="todo-gif-img" />
@@ -29,7 +29,7 @@ const Todopage = () => {
 
       </div>
 
-      <UssersList/>
+      
 
     </div>
   );

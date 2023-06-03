@@ -200,6 +200,16 @@
   color: white;
 }
 
+.edit-inputbox{
+  height: 35px;
+  background-color: black;
+  color: white;
+  font-size: 20px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+}
+
 .strikestyle {
   text-decoration: line-through;
   font-style: italic;
@@ -229,6 +239,32 @@ font-size: 20px;
 
 .edit:hover{
   cursor:pointer;
+}
+
+.edit-okbutton{
+  margin-left: 10px;
+  margin-right: 10px;
+  height: 25px;
+  width: 30px;
+  background-color: black;
+  color: white;
+  border: none;
+}
+
+.edit-okbutton:hover{
+  cursor: pointer;
+}
+
+.edit-cancelbutton{
+  height: 25px;
+  width: 60px;
+  background-color: black;
+  color: white;
+  border: none;
+}
+
+.edit-cancelbutton:hover{
+  cursor: pointer;
 }
 
 .delete{
