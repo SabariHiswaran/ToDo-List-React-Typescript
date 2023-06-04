@@ -36,21 +36,6 @@ const UssersList = () => {
     setUserInput("");
   };
 
-  // const handleCheckboxChange = (checkedboxId:number , e : React.SyntheticEvent) => {
-      
-  //     const {checked} = e.target as HTMLInputElement
-
-  //     if(checked){
-  //       // setIsChecked(true)
-  //       setAllCheckedList(prevVal => [...prevVal ,checkedboxId ])
-  //     }
-  //     else {
-  //       // setIsChecked(false)
-  //       setAllCheckedList(prevVal => prevVal.filter(val => val !== checkedboxId))
-  //     }
-
-  // }
-
     const handleCheckedList = (checkedStatus : string, checkedId : number ) => {
 
         if(checkedStatus === "add"){
@@ -64,10 +49,13 @@ const UssersList = () => {
 
     }
 
-  const handleRemoveAll = () => {
-      setAllList(prevVal => prevVal.filter(val => allCheckedList.includes(val.id) ))
-  }
+console.log(allCheckedList)
 
+  const handleRemoveAll = () => {
+      setAllList(prevVal => prevVal.filter(val => !allCheckedList.includes(val.id) ))
+      console.log("all list",allList)
+  }
+  console.log("all list",allList)
   const handleTick = (selectedId: number) => {
     setAllList((prevVal) => {
       const newArr = prevVal.map((val) => {
