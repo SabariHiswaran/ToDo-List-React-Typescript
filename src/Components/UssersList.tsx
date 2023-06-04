@@ -11,8 +11,6 @@ const UssersList = () => {
   const [userInput, setUserInput] = useState<string>("");
 
   const [allList, setAllList] = useState<Array<allListType>>([]);
-  
-  const [isChecked,setIsChecked] = useState<boolean>(false)
 
   const [allCheckedList, setAllCheckedList] = useState<number[]>([])
 
@@ -38,20 +36,33 @@ const UssersList = () => {
     setUserInput("");
   };
 
-  const handleCheckboxChange = (checkedboxId:number , e : React.SyntheticEvent) => {
+  // const handleCheckboxChange = (checkedboxId:number , e : React.SyntheticEvent) => {
       
-      const {checked} = e.target as HTMLInputElement
+  //     const {checked} = e.target as HTMLInputElement
 
-      if(checked){
-        setIsChecked(true)
-        setAllCheckedList(prevVal => [...prevVal ,checkedboxId ])
-      }
-      else {
-        setIsChecked(false)
-        setAllCheckedList(prevVal => prevVal.filter(val => val !== checkedboxId))
-      }
+  //     if(checked){
+  //       // setIsChecked(true)
+  //       setAllCheckedList(prevVal => [...prevVal ,checkedboxId ])
+  //     }
+  //     else {
+  //       // setIsChecked(false)
+  //       setAllCheckedList(prevVal => prevVal.filter(val => val !== checkedboxId))
+  //     }
 
-  }
+  // }
+
+    const handleCheckedList = (checkedStatus : string, checkedId : number ) => {
+
+        if(checkedStatus === "add"){
+          setAllCheckedList(prevVal => [...prevVal ,checkedId ])
+        }
+        else{
+          if(checkedStatus === "remove"){
+            setAllCheckedList(prevVal => prevVal.filter(val => val !== checkedId))
+          }
+        }
+
+    }
 
   const handleRemoveAll = () => {
       setAllList(prevVal => prevVal.filter(val => allCheckedList.includes(val.id) ))
@@ -121,8 +132,7 @@ const UssersList = () => {
             handleTick={handleTick} 
             handleDelete={handleDelete} 
             handleEditedList={handleEditedList}
-            handleCheckboxChange={handleCheckboxChange}
-            isChecked = {isChecked}
+            handleCheckedList = {handleCheckedList}
             />
           ))}
 
@@ -130,7 +140,7 @@ const UssersList = () => {
         className="removeAll-button"
         onClick={handleRemoveAll}
         >
-          Remove All
+          Delete Selected
           </button>
         </div>
       ) : (
