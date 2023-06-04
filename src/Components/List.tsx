@@ -8,17 +8,15 @@ import { RxCross1 } from "react-icons/rx";
 import { useEffect, useRef, useState } from "react";
 
 interface list {
-  todolist: { id: number; todo: string; isDone: boolean,isChecked : boolean };
-  handleTick: (selectedId: number) => void;
-  handleDelete: (deleteId: number) => void;
-  handleEditedList:(editedId:number , editedListName:string) => void;
-  handleCheckedList : (checkedStatus : string, checkedId : number) => void;
-  handleIsChecked : (isCheckedId : number , statusUpdate : boolean) => void
+  todolist: { id: string; todo: string; isDone: boolean,isChecked : boolean };
+  handleTick: (selectedId: string) => void;
+  handleDelete: (deleteId: string) => void;
+  handleEditedList:(editedId:string , editedListName:string) => void;
+  handleCheckedList : (checkedStatus : string, checkedId : string) => void;
+  handleIsChecked : (isCheckedId : string , statusUpdate : boolean) => void
 }
 
 const List = ({ todolist, handleTick, handleDelete,handleEditedList, handleCheckedList,handleIsChecked}: list) => {
-
-console.log(todolist)
 
   const listDivStyle = todolist.isDone ? "grayBg" : "";
 
@@ -60,7 +58,7 @@ console.log(todolist)
     setIsEdit(false)
   }
 
-  const handleCheckChange =(listId : number , e : React.SyntheticEvent)=>{
+  const handleCheckChange =(listId : string , e : React.SyntheticEvent)=>{
 
     const {checked} = e.target as HTMLInputElement
 

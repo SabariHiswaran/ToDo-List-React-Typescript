@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import List from "./List";
+import { v4 as uuid } from 'uuid';
 
 type allListType = {
-  id: number;
+  id: string;
   todo: string;
   isDone: boolean;
   isChecked : boolean
@@ -13,13 +14,16 @@ const UssersList = () => {
 
   const [allList, setAllList] = useState<Array<allListType>>([]);
 
-  const [allCheckedList, setAllCheckedList] = useState<number[]>([])
+  const [allCheckedList, setAllCheckedList] = useState<string[]>([])
 
   const isDisabled: boolean = userInput.length > 0 ? false : true;
 
   const buttonStyle: string = isDisabled ? "greyBg" : "blackBg";
 
   const inputref = useRef<HTMLInputElement>(null);
+
+  const unique_id = uuid();
+  const small_id = unique_id.slice(0,8)
 
   useEffect(() => {
     inputref.current?.focus();
@@ -34,12 +38,12 @@ const UssersList = () => {
   const handleClick = () => {
     setAllList((prevVal) => [
       ...prevVal,
-      { id: allList.length + 1, todo: userInput, isDone: false,isChecked : false },
+      { id:small_id, todo: userInput, isDone: false,isChecked : false },
     ]);
     setUserInput("");
   };
 
-  const handleIsChecked = (isCheckedId : number , statusUpdate : boolean) => {
+  const handleIsChecked = (isCheckedId : string , statusUpdate : boolean) => {
     setAllList((prevVal) => {
       const newArr = prevVal.map((val) => {
         if (val.id === isCheckedId) {
@@ -53,7 +57,7 @@ const UssersList = () => {
 
   }
 
-    const handleCheckedList = (checkedStatus : string, checkedId : number ) => {
+    const handleCheckedList = (checkedStatus : string, checkedId : string ) => {
 
         if(checkedStatus === "add"){
           setAllCheckedList(prevVal => [...prevVal ,checkedId ])
@@ -73,7 +77,7 @@ const UssersList = () => {
       setAllCheckedList([])
   }
 
-  const handleTick = (selectedId: number) => {
+  const handleTick = (selectedId: string) => {
     setAllList((prevVal) => {
       const newArr = prevVal.map((val) => {
         if (val.id === selectedId) {
@@ -86,7 +90,7 @@ const UssersList = () => {
     });
   };
 
-  const handleEditedList = (editedId:number, editedListName:string) => {
+  const handleEditedList = (editedId:string, editedListName:string) => {
     setAllList((prevVal) => {
       const newArr = prevVal.map((val) => {
         if (val.id === editedId) {
@@ -99,7 +103,7 @@ const UssersList = () => {
     });
   }
 
-  const handleDelete = (deleteId: number) => {
+  const handleDelete = (deleteId: string) => {
 
     setAllList((prevVal) => prevVal.filter( (val) => val.id !== deleteId ))
 
