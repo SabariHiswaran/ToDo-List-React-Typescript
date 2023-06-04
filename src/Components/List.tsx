@@ -8,14 +8,18 @@ import { RxCross1 } from "react-icons/rx";
 import { useEffect, useRef, useState } from "react";
 
 interface list {
-  todolist: { id: number; todo: string; isDone: boolean };
+  todolist: { id: number; todo: string; isDone: boolean,isChecked : boolean };
   handleTick: (selectedId: number) => void;
   handleDelete: (deleteId: number) => void;
-  handleEditedList:(editedId:number , e:React.SyntheticEvent) => void;
-  handleCheckedList : (checkedStatus : string, checkedId : number) => void
+  handleEditedList:(editedId:number , editedListName:string) => void;
+  handleCheckedList : (checkedStatus : string, checkedId : number) => void;
+  handleIsChecked : (isCheckedId : number , statusUpdate : boolean) => void
 }
 
-const List = ({ todolist, handleTick, handleDelete,handleEditedList, handleCheckedList}: list) => {
+const List = ({ todolist, handleTick, handleDelete,handleEditedList, handleCheckedList,handleIsChecked}: list) => {
+
+console.log(todolist)
+
   const listDivStyle = todolist.isDone ? "grayBg" : "";
 
   const textStyle = todolist.isDone ? "strikestyle" : "";
@@ -24,9 +28,9 @@ const List = ({ todolist, handleTick, handleDelete,handleEditedList, handleCheck
 
   const isCheckboxDisabled = todolist.isDone ? true : false;
 
-  const [isChecked,setIsChecked] = useState<boolean>(false)
-
   const [isEdit, setIsEdit] = useState<boolean>(false);
+
+  const [editedListName , setEditedListName] = useState<string>(todolist.todo)
 
   const inputref = useRef<HTMLInputElement>(null);
 
@@ -42,7 +46,17 @@ const List = ({ todolist, handleTick, handleDelete,handleEditedList, handleCheck
     setIsEdit((prevVal) => !prevVal);
   };
 
-  const handleOkandCancel = () => {
+  const handleTodoListEdit = (e:React.SyntheticEvent) => {
+      setEditedListName((e.target as HTMLInputElement).value)
+}
+
+  const handleOk = () => {
+    handleEditedList(todolist.id , editedListName )
+    setIsEdit(false)
+  }
+
+  const handleCancel = () => {
+    setEditedListName(todolist.todo)
     setIsEdit(false)
   }
 
@@ -51,14 +65,15 @@ const List = ({ todolist, handleTick, handleDelete,handleEditedList, handleCheck
     const {checked} = e.target as HTMLInputElement
 
     if(checked){
-          setIsChecked(true)
+          handleIsChecked(todolist.id,true)
           handleCheckedList("add",listId)
     }
     else {
-      setIsChecked(false)
+      handleIsChecked(todolist.id,false)
       handleCheckedList("remove",listId)
     }
   }
+
 
   return (
     <div className={`list-div ${listDivStyle}`}>
@@ -70,7 +85,7 @@ const List = ({ todolist, handleTick, handleDelete,handleEditedList, handleCheck
           <input 
           type="checkbox" 
           disabled={isCheckboxDisabled} 
-          checked={isChecked}
+          checked={todolist.isChecked}
           onChange={(e) => handleCheckChange(todolist.id,e)}
           name={`list${todolist.id}`}
           />
@@ -82,22 +97,22 @@ const List = ({ todolist, handleTick, handleDelete,handleEditedList, handleCheck
             <> 
             <input 
             type="text" 
-            value={todolist.todo} 
+            value={isEdit ? editedListName : todolist.todo} 
             className="edit-inputbox"
             ref={inputref}
-            onChange={(e) => handleEditedList(todolist.id,e)}
+            onChange={(e) => handleTodoListEdit(e)}
             />
 
             <button 
             className="edit-okbutton"
-            onClick={handleOkandCancel}
+            onClick={handleOk}
             >
               Ok 
             </button>
 
             <button 
             className="edit-cancelbutton"
-            onClick={handleOkandCancel}
+            onClick={handleCancel}
             >
               Cancel
             </button>

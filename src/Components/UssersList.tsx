@@ -5,6 +5,7 @@ type allListType = {
   id: number;
   todo: string;
   isDone: boolean;
+  isChecked : boolean
 };
 
 const UssersList = () => {
@@ -22,7 +23,9 @@ const UssersList = () => {
 
   useEffect(() => {
     inputref.current?.focus();
+
   }, []);
+
 
   const handleChange = (e: React.SyntheticEvent) => {
     setUserInput((e.target as HTMLInputElement).value);
@@ -31,10 +34,24 @@ const UssersList = () => {
   const handleClick = () => {
     setAllList((prevVal) => [
       ...prevVal,
-      { id: allList.length + 1, todo: userInput, isDone: false },
+      { id: allList.length + 1, todo: userInput, isDone: false,isChecked : false },
     ]);
     setUserInput("");
   };
+
+  const handleIsChecked = (isCheckedId : number , statusUpdate : boolean) => {
+    setAllList((prevVal) => {
+      const newArr = prevVal.map((val) => {
+        if (val.id === isCheckedId) {
+          return { ...val, isChecked: statusUpdate};
+        } else {
+          return val;
+        }
+      });
+      return newArr;
+    });
+
+  }
 
     const handleCheckedList = (checkedStatus : string, checkedId : number ) => {
 
@@ -49,13 +66,13 @@ const UssersList = () => {
 
     }
 
-console.log(allCheckedList)
-
   const handleRemoveAll = () => {
+
       setAllList(prevVal => prevVal.filter(val => !allCheckedList.includes(val.id) ))
-      console.log("all list",allList)
+
+      setAllCheckedList([])
   }
-  console.log("all list",allList)
+
   const handleTick = (selectedId: number) => {
     setAllList((prevVal) => {
       const newArr = prevVal.map((val) => {
@@ -69,11 +86,11 @@ console.log(allCheckedList)
     });
   };
 
-  const handleEditedList = (editedId:number, e:React.SyntheticEvent) => {
+  const handleEditedList = (editedId:number, editedListName:string) => {
     setAllList((prevVal) => {
       const newArr = prevVal.map((val) => {
         if (val.id === editedId) {
-          return { ...val, todo: (e.target as HTMLInputElement).value };
+          return { ...val, todo: editedListName};
         } else {
           return val;
         }
@@ -121,12 +138,15 @@ console.log(allCheckedList)
             handleDelete={handleDelete} 
             handleEditedList={handleEditedList}
             handleCheckedList = {handleCheckedList}
+            handleIsChecked = {handleIsChecked}
+            key={list.id}
             />
           ))}
-
+   
         <button 
-        className="removeAll-button"
+        className={allCheckedList.length > 1 ? "removeAll-button" : "removeAll-disabledbutton" }
         onClick={handleRemoveAll}
+        disabled= {allCheckedList.length > 1 ? false : true}
         >
           Delete Selected
           </button>
