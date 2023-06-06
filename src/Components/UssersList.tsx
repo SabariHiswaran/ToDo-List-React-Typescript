@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import List from "./List";
 import { v4 as uuid } from "uuid";
+import Articles from "./Articles";
 
-type allListType = {
+ type allListType = {
   id: string;
   todo: string;
   isDone: boolean;
@@ -168,7 +169,20 @@ const UssersList = () => {
         </div>
 
         {allList.length > 0 ? (
-          <div></div>
+
+          <div>
+
+              {allList.map(allList => {
+
+                return (
+
+                     <Articles articlesList = {allList}  key={allList.id}/> 
+
+                )
+
+              })}
+           
+          </div>
         ) : (
           <div className="notask-div">
             <p className="notask-title">
