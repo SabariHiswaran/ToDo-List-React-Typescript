@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+import {api_Key} from "../openaiapikey.js"
+
 interface articleProptype {
   articlesList: {
     id: string;
@@ -22,7 +24,7 @@ const Articles = ({ articlesList,todoListLength }: articleProptype) => {
   console.log(chatGPTArticle)
 
   const apiUrl = "https://api.openai.com/v1/chat/completions";
-  const apiKey = "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"; // add your own key here
+  const apiKey = {api_Key}; // add your own key here
 
   const fetchArticleData = async () => {
     fetch(apiUrl, {
