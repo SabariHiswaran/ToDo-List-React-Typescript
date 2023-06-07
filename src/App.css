@@ -318,3 +318,16 @@ font-size: 20px;
 .article-heading{
   padding: 30px;
 }
+
+.article-div{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+pre{
+  white-space: pre-wrap;
+  font-size: 18px;
+  line-height: 30px;
+  font-family: "Montserrat", sans-serif;
+}

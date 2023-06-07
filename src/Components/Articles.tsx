@@ -7,9 +7,10 @@ interface articleProptype {
     isDone: boolean;
     isChecked: boolean;
   };
+  todoListLength : number
 }
 
-const Articles = ({ articlesList }: articleProptype) => {
+const Articles = ({ articlesList,todoListLength }: articleProptype) => {
   const { id, todo, isDone, isChecked } = articlesList;
 
   const [chatGPTArticle, setChatGPTArticle] = useState<string[]>([]);
@@ -18,15 +19,15 @@ const Articles = ({ articlesList }: articleProptype) => {
     fetchArticleData();
   }, []);
 
+  console.log(chatGPTArticle)
+
   const apiUrl = "https://api.openai.com/v1/chat/completions";
-  const apiKey = "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"; // add your own key here
+  const apiKey = "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"; // add your own key here
 
   const fetchArticleData = async () => {
     fetch(apiUrl, {
       method: "POST",
-      // mode: "no-cors",
       headers: {
-        //    "Access-Control-Allow-Origin": "*", //BAD IDEA
         "Content-Type": "application/json",
         Authorization: `Bearer ${apiKey}`,
       },
@@ -42,18 +43,33 @@ const Articles = ({ articlesList }: articleProptype) => {
     })
       .then((response) => response.json())
       .then((data) => {
+        console.log(data)
         const responseText = data.choices[0].message.content.trim();
         setChatGPTArticle((prevVal) => [...prevVal, responseText]);
       });
   };
 
-  return (
+  return chatGPTArticle.length === 0 ? (
     <div>
-      {chatGPTArticle.map((article) => {
-        return <pre>{article}</pre>;
-      })}
+        Reference Articles are Loading ....
     </div>
-  );
+  )
+  :
+  (
+   <div>
+      {chatGPTArticle?.map((article,index) => {
+        return (
+        <>
+          <div className="article-div" key={index}>
+        <pre>{article}</pre>
+        <hr/>
+        </div>
+        </>
+      )
+      })}
+    
+    </div>
+  )
 };
 
 export default Articles;

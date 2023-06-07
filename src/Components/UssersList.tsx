@@ -23,6 +23,8 @@ const UssersList = () => {
 
   const inputref = useRef<HTMLInputElement>(null);
 
+  const listLength = allList.length
+
   const unique_id = uuid();
   const small_id = unique_id.slice(0, 8);
 
@@ -176,7 +178,7 @@ const UssersList = () => {
 
                 return (
 
-                     <Articles articlesList = {allList}  key={allList.id}/> 
+                     <Articles articlesList = {allList} todoListLength = {listLength} key={allList.id}/> 
 
                 )
 
