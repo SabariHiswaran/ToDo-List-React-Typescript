@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
-import {api_Key} from "../openaiapikey.js"
+import { api_Key } from "../openaiapikey.js";
+import Accordion from "react-bootstrap/Accordion";
 
 interface articleProptype {
   articlesList: {
@@ -9,22 +10,20 @@ interface articleProptype {
     isDone: boolean;
     isChecked: boolean;
   };
-  todoListLength : number
+  todoListLength: number;
 }
 
-const Articles = ({ articlesList,todoListLength }: articleProptype) => {
+const Articles = ({ articlesList, todoListLength }: articleProptype) => {
   const { id, todo, isDone, isChecked } = articlesList;
 
-  const [chatGPTArticle, setChatGPTArticle] = useState<string[]>([]);
+  const [chatGPTArticle, setChatGPTArticle] = useState<string>("");
 
   useEffect(() => {
     fetchArticleData();
   }, []);
 
-  console.log(chatGPTArticle)
-
   const apiUrl = "https://api.openai.com/v1/chat/completions";
-  const apiKey = {api_Key}; // add your own key here
+  const apiKey = api_Key; // add your own key here
 
   const fetchArticleData = async () => {
     fetch(apiUrl, {
@@ -45,33 +44,30 @@ const Articles = ({ articlesList,todoListLength }: articleProptype) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data)
+        console.log(data);
         const responseText = data.choices[0].message.content.trim();
-        setChatGPTArticle((prevVal) => [...prevVal, responseText]);
+        setChatGPTArticle(responseText);
       });
   };
 
-  return chatGPTArticle.length === 0 ? (
-    <div>
-        Reference Articles are Loading ....
+  return (
+    <div className="row">
+      <div className="col-md-8 col-md-offset-2">
+      <Accordion>
+        <Accordion.Item eventKey="0">
+          <Accordion.Header>{todo}</Accordion.Header>
+          <Accordion.Body>
+            {chatGPTArticle.length === 0 ? (
+              <p>Reference Article is Loading ....</p>
+            ) : (
+              <pre>{chatGPTArticle}</pre>
+            )}
+          </Accordion.Body>
+        </Accordion.Item>
+      </Accordion>
+      </div>
     </div>
-  )
-  :
-  (
-   <div>
-      {chatGPTArticle?.map((article,index) => {
-        return (
-        <>
-          <div className="article-div" key={index}>
-        <pre>{article}</pre>
-        <hr/>
-        </div>
-        </>
-      )
-      })}
-    
-    </div>
-  )
+  );
 };
 
 export default Articles;

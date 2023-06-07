@@ -1,6 +1,8 @@
 
+import { Navbar ,Container} from "react-bootstrap";
 import todogiphy from "../Gif/giphy (4).gif";
 import UssersList from "./UssersList";
+import headergif from '../Gif/todolist-header.gif'
 
 const Todopage = () => {
 
@@ -8,14 +10,25 @@ const Todopage = () => {
 
     <div className="todo-mainpage">
 
-    <div className='app-title'>
-       <h1> To Do List </h1>
-    </div>
+    <Navbar bg="dark" variant="dark">
+        <Container>
+          <Navbar.Brand>
+          <img
+              alt=""
+              src={todogiphy}
+              width="30"
+              height="30"
+              className="d-inline-block align-top"
+            />{' '}
+            To Do List 
+          </Navbar.Brand>
+          </Container>
+      </Navbar>
+
     <UssersList/>
+
       <div className="header-div">
-      <div className="todo-gif-div">
-          <img src={todogiphy} alt="gif" className="todo-gif-img" />
-        </div>
+
         <div>
           <p className="todo-quote"> 
           ☑️ Capture Everything in the Todo-lists and make it actionable...
