@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 import { api_Key } from "../openaiapikey.js";
 import Accordion from "react-bootstrap/Accordion";
+import { Container,Row,Col } from "react-bootstrap";
 
 interface articleProptype {
   articlesList: {
@@ -51,10 +52,14 @@ const Articles = ({ articlesList, todoListLength }: articleProptype) => {
   };
 
   return (
-    <div className="row">
-      <div className="col-md-8 col-md-offset-2">
+    <Container className="p-2">
+      <Row>
+        
+        <Col lg={2}></Col>
+
+      <Col lg={8}>
       <Accordion>
-        <Accordion.Item eventKey="0">
+        <Accordion.Item eventKey="0" >
           <Accordion.Header>{todo}</Accordion.Header>
           <Accordion.Body>
             {chatGPTArticle.length === 0 ? (
@@ -65,8 +70,13 @@ const Articles = ({ articlesList, todoListLength }: articleProptype) => {
           </Accordion.Body>
         </Accordion.Item>
       </Accordion>
-      </div>
-    </div>
+      </Col>
+
+      <Col lg={2}></Col>
+
+      </Row>
+
+    </Container>
   );
 };
 

@@ -19,13 +19,6 @@
   }
 }
 
-.app-title{
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  padding-top: 30px;
-}
-
 .gif-img{
   width: 200px;
   height: 200px;
@@ -34,8 +27,8 @@
 }
 
 .todo-title{
-  
-  font-size: 40px;
+  margin-top: 20px;
+  font-size: 30px;
   font-family: "Montserrat", sans-serif;
   font-weight: bold;
   font-style: italic;
@@ -46,8 +39,8 @@
 /* ------------------------------------------------------------ */
 
 .todo-mainpage{
-   background-color: #BE89FF;
-   /* background-color: #E4EEF8; */
+   /* background-color: #BE89FF; */
+   background-color: black;
   height: 100%;
 
 }
@@ -93,34 +86,27 @@
 
 /* --------------------------------------------------------------------- */
 
-.users-input{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  padding-top: 50px;
-}
-
 .todo-inputbox{
   width:500px;
   height: 50px;
-  border: 3px solid black;
-  background-color: #BE89FF;
-  /* background-color: #E4EEF8; */
+ 
+  /* background-color: #BE89FF; */
+  background-color: #002b53;
   outline: none;
   border-radius: 5px;
   font-size: 20px;
+  color:white;
+  border: 1px solid gray;
 }
 
-.todolist-addbutton{
-  width: 45px;
-  height: 45px;
-  margin-left: 20px;
-  background-color: black;
-  border-radius: 50%;
-  font-size: 30px;
+.todo-inputbox::placeholder{
   color: white;
+  opacity: 0.7;
 }
+
+/* .todolist-addbutton{
+  margin-left: 20px;
+} */
 
 
 .todolist-addbutton:hover{
@@ -128,8 +114,10 @@
 }
 
 .greyBg{
-  background-color: gray;
-  color: lightgray;
+  background-color: gray !important;
+  color: lightgray !important;
+  border: 1px solid gray !important;
+  opacity: 0.3;
 }
 
 .greyBg:hover{
@@ -144,11 +132,13 @@
   justify-content: center;
   align-items: center;
   margin-top: 20px; 
+  padding: 27px;
 }
 
 .notask-title{
     font-size: 20px;
     font-style: italic;
+    color: whitesmoke;
   }
 
 .allTodoList-div{
@@ -161,14 +151,8 @@
 }
 
 .list-div{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 700px;
-  margin-top: 10px;
-  /* background-color: #082a4b; */
   background-color: #002b53;
-  border-radius: 7px;
+  border-radius: 2px;
 }
 
 .grayBg{
@@ -196,8 +180,9 @@
 
 .list-title{
   font-size: 20px;
-  /* font-weight: bold; */
+  font-weight: normal;
   color: white;
+
 }
 
 .edit-inputbox{
@@ -276,7 +261,7 @@ font-size: 20px;
 .delete:hover{
   cursor:pointer;
 }
-
+/* 
 .removeAll-button{
   margin-top: 30px;
   width: 130px;
@@ -302,7 +287,7 @@ font-size: 20px;
   font-size: 15px;
   border-radius: 5px;
   box-shadow: 5px 5px #002b53
-}
+} */
 
 
 .removeAll-button:hover{
@@ -330,4 +315,21 @@ pre{
   font-size: 18px;
   line-height: 30px;
   font-family: "Montserrat", sans-serif;
+}
+
+.accordion-button{
+  background-color: gray !important;
+  color:black !important;
+  font-size:20px !important
+}
+
+.accordion-item{
+
+ border: 1px solid gray !important; 
+
+}
+
+.accordion-body{
+  background-color: black !important;
+  color: white !important;
 }

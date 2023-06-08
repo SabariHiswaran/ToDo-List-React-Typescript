@@ -6,18 +6,25 @@ import { CiCircleRemove } from "react-icons/ci";
 
 import { RxCross1 } from "react-icons/rx";
 import { useEffect, useRef, useState } from "react";
+import { Col, Container, Row } from "react-bootstrap";
 
 interface list {
-  todolist: { id: string; todo: string; isDone: boolean,isChecked : boolean };
+  todolist: { id: string; todo: string; isDone: boolean; isChecked: boolean };
   handleTick: (selectedId: string) => void;
   handleDelete: (deleteId: string) => void;
-  handleEditedList:(editedId:string , editedListName:string) => void;
-  handleCheckedList : (checkedStatus : string, checkedId : string) => void;
-  handleIsChecked : (isCheckedId : string , statusUpdate : boolean) => void
+  handleEditedList: (editedId: string, editedListName: string) => void;
+  handleCheckedList: (checkedStatus: string, checkedId: string) => void;
+  handleIsChecked: (isCheckedId: string, statusUpdate: boolean) => void;
 }
 
-const List = ({ todolist, handleTick, handleDelete,handleEditedList, handleCheckedList,handleIsChecked}: list) => {
-
+const List = ({
+  todolist,
+  handleTick,
+  handleDelete,
+  handleEditedList,
+  handleCheckedList,
+  handleIsChecked,
+}: list) => {
   const listDivStyle = todolist.isDone ? "grayBg" : "";
 
   const textStyle = todolist.isDone ? "strikestyle" : "";
@@ -28,15 +35,15 @@ const List = ({ todolist, handleTick, handleDelete,handleEditedList, handleCheck
 
   const [isEdit, setIsEdit] = useState<boolean>(false);
 
-  const [editedListName , setEditedListName] = useState<string>(todolist.todo)
+  const [editedListName, setEditedListName] = useState<string>(todolist.todo);
 
   const inputref = useRef<HTMLInputElement>(null);
 
-  const EditComponent = isEdit ? <RxCross1 /> :<AiFillEdit />;
+  const EditComponent = isEdit ? <RxCross1 /> : <AiFillEdit />;
 
   useEffect(() => {
-    if(isEdit){
-    inputref.current?.focus();
+    if (isEdit) {
+      inputref.current?.focus();
     }
   }, [isEdit]);
 
@@ -44,97 +51,109 @@ const List = ({ todolist, handleTick, handleDelete,handleEditedList, handleCheck
     setIsEdit((prevVal) => !prevVal);
   };
 
-  const handleTodoListEdit = (e:React.SyntheticEvent) => {
-      setEditedListName((e.target as HTMLInputElement).value)
-}
+  const handleTodoListEdit = (e: React.SyntheticEvent) => {
+    setEditedListName((e.target as HTMLInputElement).value);
+  };
 
   const handleOk = () => {
-    handleEditedList(todolist.id , editedListName )
-    setIsEdit(false)
-  }
+    handleEditedList(todolist.id, editedListName);
+    setIsEdit(false);
+  };
 
   const handleCancel = () => {
-    setEditedListName(todolist.todo)
-    setIsEdit(false)
-  }
+    setEditedListName(todolist.todo);
+    setIsEdit(false);
+  };
 
-  const handleCheckChange =(listId : string , e : React.SyntheticEvent)=>{
+  const handleCheckChange = (listId: string, e: React.SyntheticEvent) => {
+    const { checked } = e.target as HTMLInputElement;
 
-    const {checked} = e.target as HTMLInputElement
-
-    if(checked){
-          handleIsChecked(todolist.id,true)
-          handleCheckedList("add",listId)
+    if (checked) {
+      handleIsChecked(todolist.id, true);
+      handleCheckedList("add", listId);
+    } else {
+      handleIsChecked(todolist.id, false);
+      handleCheckedList("remove", listId);
     }
-    else {
-      handleIsChecked(todolist.id,false)
-      handleCheckedList("remove",listId)
-    }
-  }
-
+  };
 
   return (
-    <div className={`list-div ${listDivStyle}`}>
+    // <div className={`list-div ${listDivStyle}`}>
+    <Container>
 
-      <div className="listname-div">
+      <Row className="mt-2">
 
-        <div className="checkbox-div">
+        <Col lg={3} sm={0}></Col>
 
-          <input 
-          type="checkbox" 
-          disabled={isCheckboxDisabled} 
-          checked={todolist.isChecked}
-          onChange={(e) => handleCheckChange(todolist.id,e)}
-          name={`list${todolist.id}`}
-          />
+        <Col lg={6}
+        sm={12}
+          className={`list-div ${listDivStyle}`}
+        >
 
-        </div>
+          {/* <div className="listname-div"> */}
+            <Row className="d-flex justify-content-center align-items-center p-2 crud-div">
 
-        <div className="list-title-div">
-          {isEdit ? (
-            <> 
-            <input 
-            type="text" 
-            value={isEdit ? editedListName : todolist.todo} 
-            className="edit-inputbox"
-            ref={inputref}
-            onChange={(e) => handleTodoListEdit(e)}
-            />
+            <Col lg={1} sm={1}>
+              <input
+                type="checkbox"
+                disabled={isCheckboxDisabled}
+                checked={todolist.isChecked}
+                onChange={(e) => handleCheckChange(todolist.id, e)}
+                name={`list${todolist.id}`}
+              />
+            </Col>
 
-            <button 
-            className="edit-okbutton"
-            onClick={handleOk}
-            >
-              Ok 
-            </button>
+            <Col lg={8} sm={5} >
+              {isEdit ? (
+                <>
+                  <input
+                    type="text"
+                    value={isEdit ? editedListName : todolist.todo}
+                    className="edit-inputbox"
+                    ref={inputref}
+                    onChange={(e) => handleTodoListEdit(e)}
+                  />
 
-            <button 
-            className="edit-cancelbutton"
-            onClick={handleCancel}
-            >
-              Cancel
-            </button>
-            </>
-          ) : (
-            <p className={`list-title ${textStyle}`}>{todolist.todo}</p>
-          )}
-        </div>
-      </div>
+                  <button className="edit-okbutton" onClick={handleOk}>
+                    Ok
+                  </button>
 
-      <div className="para-div">
-        <p className="done" onClick={() => handleTick(todolist.id)}>
-          {tickComponent}
-        </p>
+                  <button className="edit-cancelbutton" onClick={handleCancel}>
+                    Cancel
+                  </button>
+                </>
+              ) : (
+                <h6 className={`list-title ${textStyle} `}>{todolist.todo}</h6>
+              )}
+            </Col>
 
-        <p className="edit" onClick={handleEdit} >
-        {EditComponent}
-        </p>
 
-        <p className="delete" onClick={() => handleDelete(todolist.id)}>
-          <CiCircleRemove />
-        </p>
-      </div>
-    </div>
+            <Col lg={3} sm={6}>
+            <span className="done" onClick={() => handleTick(todolist.id)}>
+              {tickComponent}
+            </span>
+           
+            <span className="edit" onClick={handleEdit}>
+              {EditComponent}
+            </span>
+          
+            <span className="delete" onClick={() => handleDelete(todolist.id)}>
+              <CiCircleRemove />
+            </span>
+
+            </Col>
+
+
+            </Row>
+        
+
+        </Col>
+
+        <Col lg={3} sm={0}></Col>
+
+      </Row>
+
+    </Container>
   );
 };
 

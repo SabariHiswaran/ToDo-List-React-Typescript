@@ -2,8 +2,9 @@ import React, { useEffect, useRef, useState } from "react";
 import List from "./List";
 import { v4 as uuid } from "uuid";
 import Articles from "./Articles";
+import { Button, Col, Container, Row } from "react-bootstrap";
 
- type allListType = {
+type allListType = {
   id: string;
   todo: string;
   isDone: boolean;
@@ -23,7 +24,7 @@ const UssersList = () => {
 
   const inputref = useRef<HTMLInputElement>(null);
 
-  const listLength = allList.length
+  const listLength = allList.length;
 
   const unique_id = uuid();
   const small_id = unique_id.slice(0, 8);
@@ -109,29 +110,54 @@ const UssersList = () => {
 
   return (
     <>
-      <div className="users-input">
-        <input
-          type="text"
-          name="usersToDo"
-          className="todo-inputbox"
-          placeholder="Add new Task"
-          ref={inputref}
-          value={userInput}
-          onChange={(e) => handleChange(e)}
-          required
-        />
+      {/* <div className="users-input"> */}
+      <Container>
+        <Row className="mt-5">
+          <Col lg={2}></Col>
 
-        <button
-          className={`todolist-addbutton ${buttonStyle}`}
-          onClick={handleClick}
-          disabled={isDisabled}
-        >
-          +
-        </button>
-      </div>
+          <Col
+            lg={8}
+            sm={12}
+            className="d-flex justify-content-center align-items-center"
+          >
+            <input
+              type="text"
+              name="usersToDo"
+              className="todo-inputbox"
+              placeholder="Task Name"
+              ref={inputref}
+              value={userInput}
+              onChange={(e) => handleChange(e)}
+              required
+            />
+          </Col>
+          <Col lg={2}></Col>
+        </Row>
+
+        <Row className="mt-4">
+          <Col lg={2}></Col>
+          <Col
+            sm={12}
+            lg={8}
+            className="d-flex justify-content-center align-items-center"
+          >
+            <Button
+              className={`todolist-addbutton ${buttonStyle}`}
+              onClick={handleClick}
+              disabled={isDisabled}
+              variant="danger"
+            >
+              Add New Task
+            </Button>
+          </Col>
+
+          <Col lg={2}></Col>
+        </Row>
+      </Container>
+      {/* </div> */}
       <div>
         {allList.length > 0 ? (
-          <div className="allTodoList-div">
+          <Container className="allTodoList-div">
             {allList.map((list) => (
               <List
                 todolist={list}
@@ -144,53 +170,87 @@ const UssersList = () => {
               />
             ))}
 
-            <button
-              className={
-                allCheckedList.length > 1
-                  ? "removeAll-button"
-                  : "removeAll-disabledbutton"
-              }
-              onClick={handleRemoveAll}
-              disabled={allCheckedList.length > 1 ? false : true}
-            >
-              Delete Selected
-            </button>
-          </div>
+<Container>
+            <Row className="mt-4">
+            <Col lg={2}></Col>
+              <Col
+                sm={12}
+                lg={8}
+                className="d-flex justify-content-center align-items-center"
+              >
+                <Button
+                  className={
+                    allCheckedList.length > 1 ? "removeAll-button" : "greyBg"
+                  }
+                  onClick={handleRemoveAll}
+                  disabled={allCheckedList.length > 1 ? false : true}
+                  variant="danger"
+                >
+                  Delete Selected
+                </Button>
+              </Col>
+              <Col lg={2}></Col>
+            </Row>
+            </Container>
+          </Container>
         ) : (
-          <div className="notask-div">
-            <p className="notask-title">
-              Currently there are no Pending tasks for you.
-            </p>
-          </div>
+          <Container>
+            <Row>
+              <Col
+                className="d-flex justify-content-center align-items-center mt-5"
+                lg={12}
+                sm={12}
+              >
+                <p className="notask-title">
+                  Currently there are no Pending tasks for you.
+                </p>
+              </Col>
+            </Row>
+          </Container>
         )}
       </div>
 
       <div>
-        <div className="app-title">
-          <h1>Reference articles as per your todo List :</h1>
-        </div>
+        <Container>
+          <Row>
+            <Col
+              className="d-flex justify-content-center align-items-center mt-5 mb-2"
+              lg={12}
+              sm={12}
+            >
+              <h3 style={{ color: "darksalmon", fontWeight: "normal" }}>
+                Usefull articles as per your todo List :
+              </h3>
+            </Col>
+          </Row>
+        </Container>
 
         {allList.length > 0 ? (
-
           <div>
-
-              {allList.map(allList => {
-
-                return (
-
-                     <Articles articlesList = {allList} todoListLength = {listLength} key={allList.id}/> 
-
-                )
-
-              })}
-           
+            {allList.map((allList) => {
+              return (
+                <Articles
+                  articlesList={allList}
+                  todoListLength={listLength}
+                  key={allList.id}
+                />
+              );
+            })}
           </div>
         ) : (
-          <div className="notask-div">
-            <p className="notask-title">
-              Create a task to display the reference articles.
-            </p>
-          </div>
+          <Container>
+            <Row>
+              <Col
+                className="d-flex justify-content-center align-items-center mt-5 p-2"
+                lg={12}
+                sm={12}
+              >
+                <p className="notask-title">
+                  Create a task to display the reference articles.
+                </p>
+              </Col>
+            </Row>
+          </Container>
         )}
       </div>
     </>
