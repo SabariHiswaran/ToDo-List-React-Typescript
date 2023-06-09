@@ -26,6 +26,10 @@
   animation-duration: 3s;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 .todo-title{
   margin-top: 20px;
   font-size: 30px;
