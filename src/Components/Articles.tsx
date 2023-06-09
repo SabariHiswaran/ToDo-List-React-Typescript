@@ -20,8 +20,9 @@ const Articles = ({ articlesList, todoListLength }: articleProptype) => {
   const [chatGPTArticle, setChatGPTArticle] = useState<string>("");
 
   useEffect(() => {
+    setChatGPTArticle("")
     fetchArticleData();
-  }, []);
+  }, [todo]);
 
   const apiUrl = "https://api.openai.com/v1/chat/completions";
   const apiKey = api_Key; // add your own key here
