@@ -46,8 +46,18 @@ const Articles = ({ articlesList, todoListLength }: articleProptype) => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+        if(data.error){
+          if(data.error.message !== ""){
+            setChatGPTArticle(data.error.message)
+          }
+          else{
+          setChatGPTArticle("Something went wrong, Pleast try again after sometime.")
+          }
+        }
+        else{
         const responseText = data.choices[0].message.content.trim();
         setChatGPTArticle(responseText);
+        }
       });
   };
 
@@ -63,7 +73,7 @@ const Articles = ({ articlesList, todoListLength }: articleProptype) => {
           <Accordion.Header>{todo}</Accordion.Header>
           <Accordion.Body>
             {chatGPTArticle.length === 0 ? (
-              <p>Reference Article is Loading ....</p>
+              <p> Reference Article is Loading ....</p>
             ) : (
               <pre>{chatGPTArticle}</pre>
             )}
