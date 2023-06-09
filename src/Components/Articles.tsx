@@ -45,7 +45,6 @@ const Articles = ({ articlesList, todoListLength }: articleProptype) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         if(data.error){
           if(data.error.message !== ""){
             setChatGPTArticle(data.error.message)
