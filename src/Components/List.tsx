@@ -93,7 +93,7 @@ const List = ({
           {/* <div className="listname-div"> */}
             <Row className="d-flex justify-content-center align-items-center p-2 crud-div">
 
-            <Col lg={1} sm={1}>
+            <Col lg={1} sm={1} className="d-flex  align-items-center mt-1">
               <input
                 type="checkbox"
                 disabled={isCheckboxDisabled}
@@ -123,12 +123,12 @@ const List = ({
                   </button>
                 </>
               ) : (
-                <h6 className={`list-title ${textStyle} `}>{todolist.todo}</h6>
+                <span className={`list-title ${textStyle} `}>{todolist.todo}</span>
               )}
             </Col>
 
 
-            <Col lg={3} sm={6}>
+            <Col lg={3} sm={6} className="d-flex align-items-center">
             <span className="done" onClick={() => handleTick(todolist.id)}>
               {tickComponent}
             </span>
