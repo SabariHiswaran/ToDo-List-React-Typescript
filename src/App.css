@@ -27,7 +27,7 @@
 }
 
 ::-webkit-scrollbar {
-  display: none;
+  display: none; 
 }
 
 .todo-title{
@@ -106,11 +106,6 @@
   color: white;
   opacity: 0.7;
 }
-
-/* .todolist-addbutton{
-  margin-left: 20px;
-} */
-
 
 .todolist-addbutton:hover{
   cursor: pointer;
@@ -264,34 +259,6 @@ font-size: 20px;
 .delete:hover{
   cursor:pointer;
 }
-/* 
-.removeAll-button{
-  margin-top: 30px;
-  width: 130px;
-  height:30px;
-  background-color: black;
-  color: white;
-  outline: none;
-  border:none;
-  font-size: 15px;
-  border-radius: 5px;
-  box-shadow: 5px 5px #002b53
-
-  }
-
-.removeAll-disabledbutton{
-  margin-top: 30px;
-  width: 130px;
-  height:30px;
-  background-color: gray;
-  color: white;
-  outline: none;
-  border:none;
-  font-size: 15px;
-  border-radius: 5px;
-  box-shadow: 5px 5px #002b53
-} */
-
 
 .removeAll-button:hover{
   cursor: pointer;
