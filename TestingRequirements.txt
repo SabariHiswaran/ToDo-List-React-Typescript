@@ -1,0 +1,11 @@
+
+
+1. Header and logo should be present.
+
+2. There should be a input box that user can use that to add todo list
+
+3. You should be able to edit or complete or delete rows in place.(There is no expectation of persistence. Edit and delete are expected to only happen in memory.)
+
+4. Articles should be present once todo list created.
+
+5. You should be able to select one or more rows.  Multiple selected rows can be deleted at once using the 'Delete Selected' button.
