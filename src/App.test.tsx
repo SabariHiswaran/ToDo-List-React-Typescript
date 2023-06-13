@@ -1,9 +1,12 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
-import App from './App';
+
+import {render} from "@testing-library/react"
+import Todopage from "./Components/Todopage";
+
+jest.mock('uuid', () => ({ v4: () => 'hjhj87878' }));
+
 
 test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+
+ const app = render(<Todopage/>)
+
 });

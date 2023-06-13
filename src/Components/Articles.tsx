@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { api_Key } from "../openaiapikey.js";
+import { api_Key } from "../openaiapikey";
 import Accordion from "react-bootstrap/Accordion";
 import { Container,Row,Col } from "react-bootstrap";
 
