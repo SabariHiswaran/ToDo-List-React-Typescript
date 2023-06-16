@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-
-import { api_Key } from "../openaiapikey";
 import Accordion from "react-bootstrap/Accordion";
 import { Container,Row,Col } from "react-bootstrap";
 
@@ -15,7 +13,7 @@ interface articleProptype {
 }
 
 const Articles = ({ articlesList, todoListLength }: articleProptype) => {
-  const { id, todo, isDone, isChecked } = articlesList;
+  const { todo } = articlesList;
  
   const [chatGPTArticle, setChatGPTArticle] = useState<string>("");
 
@@ -24,33 +22,21 @@ const Articles = ({ articlesList, todoListLength }: articleProptype) => {
     fetchArticleData();
   }, [todo]);
 
-  // const apiUrl = "https://api.openai.com/v1/chat/completions";
-  // const apiKey = api_Key; // add your own key here
-
   const apiUrl = "https://server-todolist-crn2.onrender.com"
 
   const fetchArticleData = async () => {
     fetch(apiUrl, {
       method: "POST",
-      body:JSON.stringify(todo)
-      // headers: {
-       
-      //   "Content-Type": "application/json",
-      //   // Authorization: `Bearer ${apiKey}`,
-      //   "Access-Control-Allow-Origin": "*",
-      //   'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36',
-      // },
-      // body: JSON.stringify({
-      //   model: "gpt-3.5-turbo",
-      //   messages: [
-      //     {
-      //       role: "user",
-      //       content: `Write a usefull article regarding : ${todo}`,
-      //     },
-      //   ],
-      // }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body:JSON.stringify({user:todo})
     })
-      .then((response) => response.json())
+      .then((response) =>{
+      console.log(response)
+     return response.json()
+      }
+       )
       .then((data) => {
         if(data.error){
           if(data.error.message !== ""){
@@ -67,7 +53,7 @@ const Articles = ({ articlesList, todoListLength }: articleProptype) => {
       });
   };
 
-  return (
+  return (  
     <Container className="p-2">
       <Row>
         
