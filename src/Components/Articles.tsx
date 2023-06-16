@@ -33,7 +33,6 @@ const Articles = ({ articlesList, todoListLength }: articleProptype) => {
       body:JSON.stringify({user:todo})
     })
       .then((response) =>{
-      console.log(response)
      return response.json()
       }
        )
