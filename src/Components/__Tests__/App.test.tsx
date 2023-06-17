@@ -1,15 +1,18 @@
 
-import {render} from "@testing-library/react"
+import {render, waitFor} from "@testing-library/react"
 import Todopage from "../Todopage";
-import App from "../../App";
 
 jest.mock('uuid', () => ({ v4: () => 'hjhj87878' }));
 
 
-test('renders learn react link', () => {
+test('renders learn react link', async () => {
 
- const app = render(<App/>)
+ const app = render(<Todopage/>)
 
- console.log(app)
+ await waitFor(() => expect(app.getByTestId("todo-header")) )
+
+ const headerText = app.getByTestId("todo-header")
+
+ expect(headerText).toBeInTheDocument()
 
 });

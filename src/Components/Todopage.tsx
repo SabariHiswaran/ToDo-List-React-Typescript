@@ -15,8 +15,9 @@ const Todopage = () => {
               width="30"
               height="30"
               className="d-inline-block align-top"
+              data-testid="todo-logo"
             />{" "}
-            To Do List
+           <span data-testid="todo-header"> To Do List </span>
           </Navbar.Brand>
         </Container>
       </Navbar>
