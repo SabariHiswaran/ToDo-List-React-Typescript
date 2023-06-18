@@ -136,7 +136,9 @@ const UssersList = () => {
         </Row>
 
         <Row className="mt-4">
+
           <Col lg={2}></Col>
+
           <Col
             sm={12}
             lg={8}
@@ -147,6 +149,7 @@ const UssersList = () => {
               onClick={handleClick}
               disabled={isDisabled}
               variant="danger"
+              data-testid="addtask-button"
             >
               Add New Task
             </Button>
@@ -158,7 +161,7 @@ const UssersList = () => {
       {/* </div> */}
       <div>
         {allList.length > 0 ? (
-          <Container className="allTodoList-div">
+          <Container className="allTodoList-div" data-testid="user-todolist">
             {allList.map((list) => (
               <List
                 todolist={list}
@@ -227,7 +230,7 @@ const UssersList = () => {
         </Container>
 
         {allList.length > 0 ? (
-          <div>
+          <div data-testid="articlelist">
             {allList.map((allList) => {
               return (
                 <Articles

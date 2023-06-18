@@ -112,9 +112,10 @@ const List = ({
                     className="edit-inputbox"
                     ref={inputref}
                     onChange={(e) => handleTodoListEdit(e)}
+                    data-testid="todo-editbox"
                   />
 
-                  <button className="edit-okbutton" onClick={handleOk}>
+                  <button className="edit-okbutton" onClick={handleOk} data-testid="edit-ok">
                     Ok
                   </button>
 
@@ -123,17 +124,18 @@ const List = ({
                   </button>
                 </>
               ) : (
-                <span className={`list-title ${textStyle} `}>{todolist.todo}</span>
+                <span className={`list-title ${textStyle} `} data-testid={"todolistname"}>{todolist.todo}</span>
               )}
             </Col>
 
 
             <Col lg={3} sm={6} className="d-flex align-items-center">
-            <span className="done" onClick={() => handleTick(todolist.id)}>
+
+            <span className="done" onClick={() => handleTick(todolist.id)} data-testid="todo-tick">
               {tickComponent}
             </span>
            
-            <span className="edit" onClick={handleEdit}>
+            <span className="edit" onClick={handleEdit} data-testid="todo-edit">
               {EditComponent}
             </span>
           
