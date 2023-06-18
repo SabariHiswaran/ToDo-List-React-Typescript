@@ -100,6 +100,7 @@ const List = ({
                 checked={todolist.isChecked}
                 onChange={(e) => handleCheckChange(todolist.id, e)}
                 name={`list${todolist.id}`}
+                data-testid={`list${todolist.id}`}
               />
             </Col>
 
@@ -139,7 +140,7 @@ const List = ({
               {EditComponent}
             </span>
           
-            <span className="delete" onClick={() => handleDelete(todolist.id)}>
+            <span className="delete" onClick={() => handleDelete(todolist.id)} data-testid="todo-delete">
               <CiCircleRemove />
             </span>
 

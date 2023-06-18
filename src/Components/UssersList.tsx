@@ -189,6 +189,7 @@ const UssersList = () => {
                   onClick={handleRemoveAll}
                   disabled={allCheckedList.length > 1 ? false : true}
                   variant="danger"
+                  data-testid="multipleDelete"
                 >
                   Delete Selected
                 </Button>

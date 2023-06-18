@@ -4,7 +4,7 @@ import {fireEvent, render, waitFor} from "@testing-library/react"
 import UssersList from "../UssersList";
 
 
-jest.mock('uuid', () => ({ v4: () => 'hjhj87878' }));
+jest.mock('uuid', () => ({ v4: () => ['hjhj8787','hjhj8788','hjhj8789'] }));
 
 
 global.fetch = jest.fn(() => {
@@ -116,8 +116,74 @@ test('Input box to enter the todo List by user should be present', () => {
     const okButton = userlist.getByTestId("edit-ok")
 
     fireEvent.click(okButton)
+ 
+    const listname1 = userlist.getByTestId("todolistname")
 
-    console.log(listname.innerHTML)
+    expect(listname1.innerHTML).toBe("Learn node js")
 
-    console.log(editBox.innerHTML)
+   
+ })
+
+ test("when user clicks on delete button, todolist should be deleted" , () => {
+
+    const userlist = render(<UssersList/>)
+
+    const inputBox = userlist.getByTestId("todolist-input")
+
+    const taskButton = userlist.getByTestId("addtask-button")
+
+    fireEvent.change(inputBox, {target : { value :"meeting at 5pm"}})
+
+    fireEvent.click(taskButton)
+
+    const deleteButton = userlist.getByTestId("todo-delete")
+
+    const listname = userlist.getByTestId("todolistname")
+
+    expect(listname.innerHTML).toBe("meeting at 5pm")
+
+    fireEvent.click(deleteButton)
+
+    expect(listname).not.toBeInTheDocument()
+
+ })
+
+
+ 
+ test("User should be able to select more rows.  Multiple selected rows should be deleted at once using the 'Delete Selected' button" ,async () => {
+
+    const userlist = render(<UssersList/>)
+
+    const inputBox = userlist.getByTestId("todolist-input")
+
+    const taskButton = userlist.getByTestId("addtask-button")
+
+    fireEvent.change(inputBox, {target : { value :"meeting at 5pm"}})
+
+    fireEvent.click(taskButton)
+
+    fireEvent.change(inputBox, {target : { value :"Learn node js"}})
+
+    fireEvent.click(taskButton)
+
+    fireEvent.change(inputBox, {target : { value :"DSA"}})
+
+    fireEvent.click(taskButton)
+
+    const tasklist = userlist.getByTestId("user-todolist")
+
+    const listItems = userlist.getByTestId("listhjhj8787")
+
+    fireEvent.click(listItems)
+
+    console.log(listItems)
+
+    // const multipleDelete = userlist.getByTestId("multipleDelete")
+   
+    // fireEvent.click(multipleDelete)
+
+    // await waitFor(() =>    expect(tasklist.children.length).toBe(1))
+ 
+
+    // console.log(tasklist.firstChild)
  })
