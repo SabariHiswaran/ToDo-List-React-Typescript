@@ -15,6 +15,7 @@ interface list {
   handleEditedList: (editedId: string, editedListName: string) => void;
   handleCheckedList: (checkedStatus: string, checkedId: string) => void;
   handleIsChecked: (isCheckedId: string, statusUpdate: boolean) => void;
+  Datatestid : number;
 }
 
 const List = ({
@@ -24,7 +25,11 @@ const List = ({
   handleEditedList,
   handleCheckedList,
   handleIsChecked,
+  Datatestid
 }: list) => {
+
+  console.log(Datatestid)
+
   const listDivStyle = todolist.isDone ? "grayBg" : "";
 
   const textStyle = todolist.isDone ? "strikestyle" : "";
@@ -100,7 +105,7 @@ const List = ({
                 checked={todolist.isChecked}
                 onChange={(e) => handleCheckChange(todolist.id, e)}
                 name={`list${todolist.id}`}
-                data-testid={`list${todolist.id}`}
+                data-testid={`list${Datatestid}`}
               />
             </Col>
 

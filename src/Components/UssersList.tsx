@@ -162,7 +162,7 @@ const UssersList = () => {
       <div>
         {allList.length > 0 ? (
           <Container className="allTodoList-div" data-testid="user-todolist">
-            {allList.map((list) => (
+            {allList.map((list,index) => (
               <List
                 todolist={list}
                 handleTick={handleTick}
@@ -171,6 +171,7 @@ const UssersList = () => {
                 handleCheckedList={handleCheckedList}
                 handleIsChecked={handleIsChecked}
                 key={list.id}
+                Datatestid = {index}
               />
             ))}
 

@@ -150,7 +150,7 @@ test('Input box to enter the todo List by user should be present', () => {
 
 
  
- test("User should be able to select more rows.  Multiple selected rows should be deleted at once using the 'Delete Selected' button" ,async () => {
+ test("User should be able to select more rows.  Multiple selected rows should be deleted at once using the 'Delete Selected' button" , () => {
 
     const userlist = render(<UssersList/>)
 
@@ -172,18 +172,18 @@ test('Input box to enter the todo List by user should be present', () => {
 
     const tasklist = userlist.getByTestId("user-todolist")
 
-    const listItems = userlist.getByTestId("listhjhj8787")
+    const listItem0 = userlist.getByTestId("list0")
 
-    fireEvent.click(listItems)
+    fireEvent.click(listItem0)
 
-    console.log(listItems)
+    const listItem1 = userlist.getByTestId("list1")
 
-    // const multipleDelete = userlist.getByTestId("multipleDelete")
+    fireEvent.click(listItem1)
+
+    const multipleDelete = userlist.getByTestId("multipleDelete")
    
-    // fireEvent.click(multipleDelete)
+    fireEvent.click(multipleDelete)
 
-    // await waitFor(() =>    expect(tasklist.children.length).toBe(1))
- 
+   expect(tasklist.children.length).toBe(2)
 
-    // console.log(tasklist.firstChild)
  })
