@@ -28,7 +28,6 @@ const List = ({
   Datatestid
 }: list) => {
 
-  console.log(Datatestid)
 
   const listDivStyle = todolist.isDone ? "grayBg" : "";
 
